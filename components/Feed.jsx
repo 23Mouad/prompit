@@ -3,20 +3,56 @@ import React from "react";
 import Cardprompt from "./Cardprompt";
 import { useRouter, usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { Grid, Skeleton, Stack } from "@mui/material";
 
 const PromptsList = ({ data, handleTagClick }) => {
    if (data.length === 0) {
-      return <h1 className="text-center">No prompts found</h1>;
+      return (
+         <Grid
+            container
+            spacing={4}
+            justifyContent="center"
+            alignItems="center"
+            mt={3}
+            padding={4}
+         >
+            <Grid item xs={12} sm={6} md={4} marginBottom={2}>
+               <Skeleton variant="circular" width={80} height={80} />
+               <Skeleton variant="rectangular" height={150} />
+               <Skeleton variant="rounded" height={150} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+               <Skeleton variant="circular" width={80} height={80} />
+               <Skeleton variant="rectangular" height={150} />
+               <Skeleton variant="rounded" height={150} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} marginTop={2}>
+               <Skeleton variant="circular" height={80} width={80} />
+               <Skeleton variant="rectangular" height={150} />
+               <Skeleton variant="rounded" height={150} />
+            </Grid>
+         </Grid>
+      );
    }
 
    return (
       <div className="prompts-list">
          {data.map((prompt) => (
-            <Cardprompt
-               key={prompt.id}
-               prompt={prompt}
-               handleTagClick={handleTagClick}
-            />
+            <Grid
+               key={prompt._id}
+               container
+               spacing={4}
+               justifyContent="center"
+               alignItems="center"
+               mt={3}
+               padding={4}
+            >
+               <Cardprompt
+                  key={prompt._id}
+                  prompt={prompt}
+                  handleTagClick={handleTagClick}
+               />
+            </Grid>
          ))}
       </div>
    );
