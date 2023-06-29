@@ -1,0 +1,88 @@
+/* font families */
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@font-face {
+   font-family: "neue";
+   src: url("../assets/NeueMetanaNext-SemiBold.otf");
+}
+@font-face {
+   font-family: "neueoutline";
+   src: url("../assets/NeueMetanaNextOutline-Black.otf");
+   font-weight: bold;
+}
+
+.main {
+   background-color: #e5e5e5;
+   font-family: "Roboto", sans-serif;
+}
+
+.navbari {
+   background-color: white;
+   border-bottom: 1px solid #e5e5e5;
+   border-top: 1px solid #e5e5e5;
+}
+.logo-site h5 a {
+   background: radial-gradient(
+            61.67% 738.78% at 18.81% 18.33%,
+            #12c6ff 0%,
+            rgba(18, 198, 255, 0) 100%
+         )
+         /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+      #00d930;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   margin-left: 5px;
+   font-size: 20px;
+   font-weight: 700;
+   text-decoration: none;
+}
+
+/* Landing page */
+.landing-page h2 {
+   font-family: "neue";
+}
+
+.landing-page h2 span {
+   font-family: "neueoutline";
+}
+
+.landing-page .row > div:nth-child(2) {
+   background: linear-gradient(180deg, #90adf7 0%, #5f7cff 100%);
+   position: relative;
+}
+.landing-page .row > div:nth-child(2) img {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.landing-page .secondpart {
+   background-image: url("../assets/landingwrite.png");
+}
+
+/* Sign in page */
+.signupage {
+   background-color: #1e1e1e !important;
+   text-align: center;
+   height: 100vh;
+}
+.signupage > div {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+@media (max-width: 576px) {
+   /* CSS modifications for small devices */
+   .landing-page .row > div:nth-child(2) {
+      background: linear-gradient(180deg, #90adf7 0%, #5675fd 100%);
+      position: inherit;
+   }
+   .landing-page .row > div:nth-child(2) img {
+      position: inherit;
+
+      transform: translate(-0%, -0%);
+   }
+}
