@@ -59,7 +59,7 @@ const CreatePr = () => {
    const handleRemoveTag = (index) => {
       setPrompt({
          ...prompt,
-         tags: prompt.tags.filter((_, i) => i !== index),
+         tags: prompt.tags.filter((_, i) => i !== index), //?needs understand
       });
    };
 

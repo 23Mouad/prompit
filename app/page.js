@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import "@styles/style.css";
 import Landingpage from "@components/Landingpage";
 import Navbar from "../components/Navbar";

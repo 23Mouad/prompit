@@ -22,6 +22,7 @@ const Navbar = () => {
                   className=" img-fluid"
                   width={70}
                   height={70}
+                  priority
                />
             </Link>
             <h5>
@@ -44,6 +45,7 @@ const Navbar = () => {
                               className="rounded-circle"
                               width={40}
                               height={40}
+                              priority
                            />
                         </Link>
 
@@ -75,6 +77,7 @@ const Navbar = () => {
                               className="rounded-circle"
                               width={40}
                               height={40}
+                              priority
                            />
                         </Link>
                         <Link

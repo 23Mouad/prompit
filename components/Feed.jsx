@@ -8,52 +8,127 @@ import { Grid, Skeleton, Stack } from "@mui/material";
 const PromptsList = ({ data, handleTagClick }) => {
    if (data.length === 0) {
       return (
-         <Grid
-            container
-            spacing={4}
-            justifyContent="center"
-            alignItems="center"
-            mt={3}
-            padding={4}
-         >
-            <Grid item xs={12} sm={6} md={4} marginBottom={2}>
-               <Skeleton variant="circular" width={80} height={80} />
-               <Skeleton variant="rectangular" height={150} />
-               <Skeleton variant="rounded" height={150} />
+         <>
+            <Grid
+               container
+               spacing={2}
+               justifyContent="center"
+               alignItems="center"
+               padding={4}
+            >
+               <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  sx={{ marginBottom: { xs: 2, sm: 2, md: 0 } }}
+               >
+                  <Skeleton variant="circular" width={80} height={80} />
+                  <Skeleton variant="rectangular" height={150} />
+                  <Skeleton variant="rounded" height={150} />
+               </Grid>
+               <Grid item xs={12} sm={6} md={4}>
+                  <Skeleton variant="circular" width={80} height={80} />
+                  <Skeleton variant="rectangular" height={150} />
+                  <Skeleton variant="rounded" height={150} />
+               </Grid>
+               <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  sx={{ marginTop: { xs: 2, sm: 2, md: 0 } }}
+               >
+                  <Skeleton variant="circular" height={80} width={80} />
+                  <Skeleton variant="rectangular" height={150} />
+                  <Skeleton variant="rounded" height={150} />
+               </Grid>
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-               <Skeleton variant="circular" width={80} height={80} />
-               <Skeleton variant="rectangular" height={150} />
-               <Skeleton variant="rounded" height={150} />
+            <Grid
+               container
+               spacing={2}
+               justifyContent="center"
+               alignItems="center"
+               padding={4}
+            >
+               <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  sx={{ marginBottom: { xs: 2, sm: 2, md: 0 } }}
+               >
+                  <Skeleton variant="circular" width={80} height={80} />
+                  <Skeleton variant="rectangular" height={150} />
+                  <Skeleton variant="rounded" height={150} />
+               </Grid>
+               <Grid item xs={12} sm={6} md={4}>
+                  <Skeleton variant="circular" width={80} height={80} />
+                  <Skeleton variant="rectangular" height={150} />
+                  <Skeleton variant="rounded" height={150} />
+               </Grid>
+               <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  sx={{ marginTop: { xs: 2, sm: 2, md: 0 } }}
+               >
+                  <Skeleton variant="circular" height={80} width={80} />
+                  <Skeleton variant="rectangular" height={150} />
+                  <Skeleton variant="rounded" height={150} />
+               </Grid>
             </Grid>
-            <Grid item xs={12} sm={6} md={4} marginTop={2}>
-               <Skeleton variant="circular" height={80} width={80} />
-               <Skeleton variant="rectangular" height={150} />
-               <Skeleton variant="rounded" height={150} />
+            <Grid
+               container
+               spacing={2}
+               justifyContent="center"
+               alignItems="center"
+               padding={4}
+            >
+               <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  sx={{ marginBottom: { xs: 2, sm: 2, md: 0 } }}
+               >
+                  <Skeleton variant="circular" width={80} height={80} />
+                  <Skeleton variant="rectangular" height={150} />
+                  <Skeleton variant="rounded" height={150} />
+               </Grid>
+               <Grid item xs={12} sm={6} md={4}>
+                  <Skeleton variant="circular" width={80} height={80} />
+                  <Skeleton variant="rectangular" height={150} />
+                  <Skeleton variant="rounded" height={150} />
+               </Grid>
+               <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  sx={{ marginTop: { xs: 2, sm: 2, md: 0 } }}
+               >
+                  <Skeleton variant="circular" height={80} width={80} />
+                  <Skeleton variant="rectangular" height={150} />
+                  <Skeleton variant="rounded" height={150} />
+               </Grid>
             </Grid>
-         </Grid>
+         </>
       );
    }
 
    return (
-      <div className="prompts-list">
-         {data.map((prompt) => (
-            <Grid
-               key={prompt._id}
-               container
-               spacing={4}
-               justifyContent="center"
-               alignItems="center"
-               mt={3}
-               padding={4}
-            >
+      <div className="container">
+         <div className="prompts-list m-0 row align-items-start p-md-4  ">
+            {data.map((prompt) => (
                <Cardprompt
                   key={prompt._id}
                   prompt={prompt}
                   handleTagClick={handleTagClick}
                />
-            </Grid>
-         ))}
+            ))}
+         </div>
       </div>
    );
 };
@@ -61,10 +136,11 @@ const PromptsList = ({ data, handleTagClick }) => {
 const Feed = () => {
    const [posts, setPosts] = React.useState([]);
    const [search, setsearch] = React.useState("");
+   const [FilterdPosts, setFiltredPosts] = React.useState([]);
 
-   const handlechange = (e) => {
-      setsearch(e.target.value);
-   };
+   // const handlechange = (e) => {
+   //    setsearch(e.target.value);
+   // };
 
    React.useEffect(() => {
       const fetchdata = async () => {
@@ -79,17 +155,30 @@ const Feed = () => {
       setsearch(tag);
    };
 
+   //? BELLOW THIS COMMENT THE CODE OF FRONTEND
+
    return (
       <div className=" p-1 p-sm-2 p-md-4 p-lg-5">
-         <form className="search ">
+         <div className="search  me-auto ms-auto w-25 ">
             <input
                type="text"
-               className="search-input"
-               placeholder="Search for a movie"
+               className="search__input"
+               placeholder="Type your text"
                value={search}
-               onChange={handlechange}
+               onChange={(e) => setsearch(e.target.value)}
             />
-         </form>
+            <button className="search__button">
+               <svg
+                  className="search__icon"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+               >
+                  <g>
+                     <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                  </g>
+               </svg>
+            </button>
+         </div>
          <PromptsList data={posts} handleTagClick={handleTagClick} />
       </div>
    );

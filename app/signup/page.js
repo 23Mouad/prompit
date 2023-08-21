@@ -6,7 +6,7 @@ import "@styles/style.css";
 import logovv from "@assets/logovv.png";
 import { signIn, getProviders } from "next-auth/react";
 
-const metadata = {
+export const metadata = {
    title: "signup",
    description: "signup page",
 };
@@ -26,13 +26,15 @@ export default function Signup() {
    return (
       <main className="signupage">
          <div>
-            <Image
-               src={logovv}
-               width={200}
-               height={200}
-               alt="logo image"
-               priority
-            />
+            <Link href="/">
+               <Image
+                  src={logovv}
+                  width={200}
+                  height={200}
+                  alt="logo image"
+                  priority
+               />
+            </Link>
             <h5 className=" text-white">Welcome to Prompt It</h5>
             <h6 className=" text-white-50 mb-5">
                Log in or Register with your Email{" "}
