@@ -1,4 +1,4 @@
-"use client ";
+"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -9,25 +9,28 @@ import Navbar from "@components/Navbar";
 const MyProfile = () => {
    const { data: session } = useSession();
    const router = useRouter();
-   const [data, setData] = useState([]);
+   const [isdata, setData] = useState([]);
 
    useEffect(() => {
       const fetchPosts = async () => {
-         const res = await fetch("/api/users/[id]/prompts");
+         const res = await fetch(`/api/users/${session?.user.id}/prompts`);
          const data = await res.json();
+         setData(data);
       };
-      fetchPosts();
-   }, []);
+      if (session?.user.id) fetchPosts();
+   }, [session?.user.id]);
 
-   const editPrompt = async() > {};
-   const deletePrompt = async() > {};
+   const editPrompt = (post) => {
+      router.push(`/edit-prompt?id=${post._id}`);
+   };
+   const deletePrompt = async () => {};
    return (
       <>
          <Navbar />{" "}
          <Profile
-            name="my"
+            name="My"
             desc="Welcome to your profile"
-            data={[]}
+            data={isdata}
             editPrompt={editPrompt}
             deletePrompt={deletePrompt}
          />

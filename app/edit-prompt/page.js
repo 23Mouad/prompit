@@ -1,11 +1,11 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Navbar from "@components/Navbar";
 import Provider from "@components/Provider";
 
-const CreatePr = () => {
+const EditPr = () => {
    const [prompt, setPrompt] = useState({
       title: "",
       prompt: "",
@@ -13,34 +13,34 @@ const CreatePr = () => {
       tagInput: "", // New state to store the current tag input
    });
 
-   const { data: session } = useSession();
-
+   const useSearchParam = useSearchParams();
+   const promptId = useSearchParam.get("id");
    const router = useRouter();
 
-   const handleSubmit = async (e) => {
-      e.preventDefault();
-      // Add your logic for handling form submission here
-      try {
-         const res = await fetch("/api/prompt/create", {
-            method: "POST",
-            body: JSON.stringify({
-               id: session?.user?.id,
-               title: prompt.title,
-               prompt: prompt.prompt,
-               tags: prompt.tags,
-            }),
-         });
+   // const handleSubmit = async (e) => {
+   //    e.preventDefault();
+   //    // Add your logic for handling form submission here
+   //    try {
+   //       const res = await fetch("/api/prompt/create", {
+   //          method: "POST",
+   //          body: JSON.stringify({
+   //             id: session?.user?.id,
+   //             title: prompt.title,
+   //             prompt: prompt.prompt,
+   //             tags: prompt.tags,
+   //          }),
+   //       });
 
-         if (res.ok) {
-            const prompt = await res.json();
-            router.push("/");
-            console.log(prompt);
-         }
-         console.log(res);
-      } catch (error) {
-         console.log(error);
-      }
-   };
+   //       if (res.ok) {
+   //          const prompt = await res.json();
+   //          router.push("/");
+   //          console.log(prompt);
+   //       }
+   //       console.log(res);
+   //    } catch (error) {
+   //       console.log(error);
+   //    }
+   // };
 
    const handleTagInput = (e) => {
       setPrompt({ ...prompt, tagInput: e.target.value });
@@ -63,17 +63,33 @@ const CreatePr = () => {
       });
    };
 
+   useEffect(() => {
+      const fetchPrompt = async () => {
+         const res = await fetch(`/api/prompt/${promptId}`);
+         const data = await res.json();
+         setPrompt({
+            title: data.title,
+            prompt: data.prompt,
+            tags: data.tags,
+            tagInput: "",
+         });
+      };
+      if (promptId) fetchPrompt();
+   }, [promptId]);
+
    return (
       <Provider>
          <Navbar />
 
-         <div className="p-2 p-md-5 create-pr" style={{ backgroundColor: "#E5E5E5" }}>
-
-            <h1>Create a Prompt</h1>
+         <div
+            className="p-2 p-md-5 create-pr"
+            style={{ backgroundColor: "#E5E5E5" }}
+         >
+            <h1>Edit a Prompt</h1>
             <div className="container">
                <div className="row justify-content-center">
                   <div className="col-md-8">
-                     <form onSubmit={handleSubmit}>
+                     <form onSubmit={() => {}}>
                         <div className="mb-3">
                            <label htmlFor="title" className="form-label">
                               Title
@@ -170,4 +186,4 @@ const CreatePr = () => {
    );
 };
 
-export default CreatePr;
+export default EditPr;

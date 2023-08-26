@@ -8,6 +8,8 @@ import Avatar from "@mui/material/Avatar";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import ContentCopyTwoToneIcon from "@mui/icons-material/ContentCopyTwoTone";
 import { Margin } from "@mui/icons-material";
+import { useRouter, usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import "@styles/style.css";
 
 function stringToColor(string) {
@@ -43,7 +45,7 @@ function stringAvatar(name) {
    };
 }
 
-const Cardprompt = ({ handleTagClick, prompt }) => {
+const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
    const [copied, setCopied] = React.useState(false);
 
    const copyToClipboard = () => {
@@ -52,9 +54,13 @@ const Cardprompt = ({ handleTagClick, prompt }) => {
       setTimeout(() => setCopied(false), 3000);
    };
 
+   const { data: session } = useSession();
+   const router = useRouter();
+   const path = usePathname();
+
    return (
       <div className="col-12 col-sm-6 col-md-4  row bg-body-tertiary p-xs-1 p-sm-2 mb-2 border border-2 border-opacity-25 border-secondary mx-0 ">
-         <div class="avoid-break">
+         <div className="avoid-break">
             <div className=" justify-content-between d-flex p-1 ">
                <div className=" d-flex">
                   <Grid
@@ -117,6 +123,25 @@ const Cardprompt = ({ handleTagClick, prompt }) => {
                   />
                ))}
             </div>
+            {session?.user?.id === prompt.creator._id &&
+               path === "/profile" && (
+                  <div className="d-flex justify-content-center gap-3 pt-2 mt-4">
+                     <p
+                        className=" text-success pointer-event"
+                        onClick={editPrompt}
+                        style={{ cursor: "pointer" }}
+                     >
+                        Edit
+                     </p>
+                     <p
+                        className=" text-danger pointer-event "
+                        onClick={deletePrompt}
+                        style={{ cursor: "pointer" }}
+                     >
+                        Delete
+                     </p>
+                  </div>
+               )}
          </div>
       </div>
    );
