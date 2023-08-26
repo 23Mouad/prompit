@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
 import Navbar from "@components/Navbar";
 import Provider from "@components/Provider";
 
@@ -17,30 +16,27 @@ const EditPr = () => {
    const promptId = useSearchParam.get("id");
    const router = useRouter();
 
-   // const handleSubmit = async (e) => {
-   //    e.preventDefault();
-   //    // Add your logic for handling form submission here
-   //    try {
-   //       const res = await fetch("/api/prompt/create", {
-   //          method: "POST",
-   //          body: JSON.stringify({
-   //             id: session?.user?.id,
-   //             title: prompt.title,
-   //             prompt: prompt.prompt,
-   //             tags: prompt.tags,
-   //          }),
-   //       });
+   const EditSubmit = async (e) => {
+      e.preventDefault();
+      // Add your logic for handling form submission here
+      if (!promptId) return alert("No prompt id");
+      try {
+         const res = await fetch(`/api/prompt/${promptId}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+               title: prompt.title,
+               prompt: prompt.prompt,
+               tags: prompt.tags,
+            }),
+         });
 
-   //       if (res.ok) {
-   //          const prompt = await res.json();
-   //          router.push("/");
-   //          console.log(prompt);
-   //       }
-   //       console.log(res);
-   //    } catch (error) {
-   //       console.log(error);
-   //    }
-   // };
+         if (res.ok) {
+            router.push("/profile");
+         }
+      } catch (error) {
+         console.log(error);
+      }
+   };
 
    const handleTagInput = (e) => {
       setPrompt({ ...prompt, tagInput: e.target.value });
@@ -89,7 +85,7 @@ const EditPr = () => {
             <div className="container">
                <div className="row justify-content-center">
                   <div className="col-md-8">
-                     <form onSubmit={() => {}}>
+                     <form onSubmit={EditSubmit}>
                         <div className="mb-3">
                            <label htmlFor="title" className="form-label">
                               Title

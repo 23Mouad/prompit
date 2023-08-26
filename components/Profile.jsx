@@ -4,7 +4,7 @@ import Cardprompt from "@components/Cardprompt";
 import LoadingCards from "@components/Loadingcrds";
 const Profile = ({ desc, data, deletePrompt, editPrompt, name }) => {
    return (
-      <>
+      <div className="container">
          <h1 className=" text-primary-emphasis">{name} Profile</h1>
          <p>{desc}</p>
          <div className="container my-4">
@@ -25,7 +25,7 @@ const Profile = ({ desc, data, deletePrompt, editPrompt, name }) => {
                )}
             </div>
          </div>
-      </>
+      </div>
    );
 };
 

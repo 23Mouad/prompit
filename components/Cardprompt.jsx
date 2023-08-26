@@ -73,7 +73,7 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
                      marginTop={1}
                   >
                      <Link
-                        href={`/profile/${prompt.creator._id}`}
+                        href={`/profile?id=${prompt.creator._id}`}
                         className=" text-decoration-none "
                      >
                         <Avatar {...stringAvatar(prompt.creator.username)} />

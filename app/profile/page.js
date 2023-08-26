@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Profile from "@components/profile";
 import Navbar from "@components/Navbar";
-
+import Swal from "sweetalert2";
 const MyProfile = () => {
    const { data: session } = useSession();
    const router = useRouter();
@@ -23,7 +23,42 @@ const MyProfile = () => {
    const editPrompt = (post) => {
       router.push(`/edit-prompt?id=${post._id}`);
    };
-   const deletePrompt = async () => {};
+   const deletePrompt = async (post) => {
+      try {
+         const confirm = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+         });
+
+         if (confirm.isConfirmed) {
+            const response = await fetch(`/api/prompt/${post._id}`, {
+               method: "DELETE",
+            });
+
+            if (response.ok) {
+               const filteredPosts = isdata.filter(
+                  (item) => item._id !== post._id
+               );
+               setData(filteredPosts);
+               Swal.fire("Deleted!", "Your post has been deleted.", "success");
+            } else {
+               throw new Error("Failed to delete post.");
+            }
+         }
+      } catch (error) {
+         console.error(error);
+         Swal.fire(
+            "Error",
+            "An error occurred while deleting the post.",
+            "error"
+         );
+      }
+   };
    return (
       <>
          <Navbar />{" "}
