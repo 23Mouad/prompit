@@ -72,12 +72,21 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
                      marginBottom={2}
                      marginTop={1}
                   >
-                     <Link
-                        href={`/profile?id=${prompt.creator._id}`}
-                        className=" text-decoration-none "
-                     >
-                        <Avatar {...stringAvatar(prompt.creator.username)} />
-                     </Link>
+                     {prompt.creator._id === session?.user?.id ? (
+                        <Link
+                           href={`/profile`}
+                           className=" text-decoration-none "
+                        >
+                           <Avatar {...stringAvatar(prompt.creator.username)} />
+                        </Link>
+                     ) : (
+                        <Link
+                           href={`/profile/${prompt.creator._id}`}
+                           className=" text-decoration-none "
+                        >
+                           <Avatar {...stringAvatar(prompt.creator.username)} />
+                        </Link>
+                     )}
                   </Grid>
                   <Grid item xs={6} sm={6} md={6} marginBottom={2}>
                      <h5 className=" text-black mb-0">
@@ -124,7 +133,8 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
                ))}
             </div>
             {session?.user?.id === prompt.creator._id &&
-               path === "/profile" && (
+               (path === "/profile" ||
+                  path === `/profile/${session?.user?.id} `) && (
                   <div className="d-flex justify-content-center gap-3 pt-2 mt-4">
                      <p
                         className=" text-success pointer-event"

@@ -27,6 +27,7 @@ const EditPr = () => {
                title: prompt.title,
                prompt: prompt.prompt,
                tags: prompt.tags,
+               tagInput: prompt.tagInput,
             }),
          });
 

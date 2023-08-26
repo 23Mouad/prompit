@@ -28,7 +28,6 @@ const PromptsList = ({ data, handleTagClick }) => {
 const Feed = () => {
    const [posts, setPosts] = React.useState([]);
    const [search, setsearch] = React.useState("");
-   const [FilterdPosts, setFiltredPosts] = React.useState([]);
 
    // const handlechange = (e) => {
    //    setsearch(e.target.value);
@@ -38,10 +37,21 @@ const Feed = () => {
       const fetchdata = async () => {
          const res = await fetch("/api/prompt");
          const data = await res.json();
-         setPosts(data);
+         search.length === 0
+            ? setPosts(data)
+            : setPosts(
+                 data.filter(
+                    (post) =>
+                       post.prompt
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                       post.tags.includes(search.toLowerCase()) ||
+                       post.title.includes(search.toLowerCase())
+                 )
+              );
       };
       fetchdata();
-   }, []);
+   }, [search]);
 
    const handleTagClick = (tag) => {
       setsearch(tag);

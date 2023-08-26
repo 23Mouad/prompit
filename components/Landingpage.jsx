@@ -40,6 +40,7 @@ const LandingPage = () => {
                   alt="landing"
                   className=" img-fluid"
                   height={600}
+                  priority={true}
                />
             </div>
          </div>

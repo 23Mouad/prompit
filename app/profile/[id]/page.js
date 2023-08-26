@@ -1,27 +1,28 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import Navbar from "@components/Navbar";
-import Profile from "@components/Profile";
+import Profile from "@components/profile";
+
 const OtherProfile = () => {
    const [isdata, setData] = useState([]);
-   const searchParamsi = useSearchParams();
+   const params = useParams();
 
    useEffect(() => {
       const fetchPosts = async () => {
-         const res = await fetch(`/api/users/${searchParamsi.id}/prompts`);
+         const res = await fetch(`/api/users/${params.id}/prompts`);
          const data = await res.json();
          setData(data);
       };
-      if (searchParamsi.id) fetchPosts();
-   }, [searchParamsi.id]);
+      if (params.id) fetchPosts();
+   }, [params.id]);
 
    return (
       <>
          <Navbar />
          <Profile
-            name={isdata.creator?.username || "User"}
-            desc={`Welcome to ${isdata.creator?.username} profile`}
+            name={isdata[0].creator?.username || "User"}
+            desc={`Welcome to ${isdata[0].creator?.username} profile`}
             data={isdata}
          />
       </>
