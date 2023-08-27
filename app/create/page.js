@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Navbar from "@components/Navbar";
 import Provider from "@components/Provider";
+import Head from "next/head";
 
 const CreatePr = () => {
    const [prompt, setPrompt] = useState({
@@ -65,10 +66,15 @@ const CreatePr = () => {
 
    return (
       <Provider>
+         {" "}
+         <Head>
+            <title>Create</title>
+         </Head>
          <Navbar />
-
-         <div className="p-2 p-md-5 create-pr" style={{ backgroundColor: "#E5E5E5" }}>
-
+         <div
+            className="p-2 p-md-5 create-pr"
+            style={{ backgroundColor: "#E5E5E5" }}
+         >
             <h1>Create a Prompt</h1>
             <div className="container">
                <div className="row justify-content-center">

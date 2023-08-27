@@ -3,7 +3,7 @@ import React from "react";
 import Cardprompt from "./Cardprompt";
 import { useRouter, usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import LoadingCards from "@components/Loadingcrds";
+import LoadingCards from "./loadingcrds";
 
 const PromptsList = ({ data, handleTagClick }) => {
    if (data.length === 0) {

@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Cardprompt from "@components/Cardprompt";
-import LoadingCards from "@components/Loadingcrds";
+import LoadingCards from "./loadingcrds";
+
 const Profile = ({ desc, data, deletePrompt, editPrompt, name }) => {
    return (
       <div className="container">

@@ -6,11 +6,6 @@ import "@styles/style.css";
 import logovv from "@assets/logovv.png";
 import { signIn, getProviders } from "next-auth/react";
 
-export const metadata = {
-   title: "signup",
-   description: "signup page",
-};
-
 export default function Signup() {
    const [providers, setProviders] = React.useState(null);
 
