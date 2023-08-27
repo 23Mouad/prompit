@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import Profile from "@components/profile";
+import Profile from "@components/Profile";
 import Navbar from "@components/Navbar";
 import Swal from "sweetalert2";
 const MyProfile = () => {

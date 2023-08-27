@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Navbar from "@components/Navbar";
-import Profile from "@components/profile";
+import Profile from "@components/Profile";
 
 const OtherProfile = () => {
    const [isdata, setData] = useState([]);
