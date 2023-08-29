@@ -5,7 +5,7 @@ import Link from "next/link";
 import "@styles/style.css";
 import logovv from "@assets/logovv.png";
 import { signIn, getProviders } from "next-auth/react";
-
+import { Toaster } from "react-hot-toast";
 export default function Signup() {
    const [providers, setProviders] = React.useState(null);
 
@@ -20,6 +20,7 @@ export default function Signup() {
 
    return (
       <main className="signupage">
+         <Toaster />
          <div>
             <Link href="/">
                <Image

@@ -7,7 +7,6 @@ import TagRoundedIcon from "@mui/icons-material/TagRounded";
 import Avatar from "@mui/material/Avatar";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import ContentCopyTwoToneIcon from "@mui/icons-material/ContentCopyTwoTone";
-import { Margin } from "@mui/icons-material";
 import { useRouter, usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import "@styles/style.css";
@@ -17,8 +16,8 @@ function stringToColor(string) {
    let i;
 
    /* eslint-disable no-bitwise */
-   for (i = 0; i < string.length; i += 1) {
-      hash = string.charCodeAt(i) + ((hash << 5) - hash);
+   for (i = 0; i < (string || "").length; i += 1) {
+      hash = string?.charCodeAt(i) + ((hash << 5) - hash);
    }
 
    let color = "#";
@@ -37,9 +36,9 @@ function stringAvatar(name) {
       sx: {
          bgcolor: stringToColor(name),
       },
-      children: `${name.split(" ")[0][0].toUpperCase()}${
-         name && name.split(" ")[1] && name.split(" ")[1][0]
-            ? name.split(" ")[1][0].toUpperCase()
+      children: `${name?.split(" ")[0][0].toUpperCase()}${
+         name && name?.split(" ")[1] && name?.split(" ")[1][0]
+            ? name?.split(" ")[1][0].toUpperCase()
             : ""
       }`,
    };
@@ -59,7 +58,7 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
    const path = usePathname();
 
    return (
-      <div className="col-12 col-sm-6 col-md-4  row bg-body-tertiary p-xs-1 p-sm-2 mb-2 border border-2 border-opacity-25 border-secondary mx-0 ">
+      <div className="col row bg-body-tertiary p-xs-1 p-sm-2 mb-2 border border-2 border-opacity-25 border-secondary mx-0 ">
          <div className="avoid-break">
             <div className=" justify-content-between d-flex p-1 ">
                <div className=" d-flex">
@@ -68,31 +67,35 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
                      xs={2}
                      sm={2}
                      md={2}
-                     padding={1}
-                     marginBottom={2}
-                     marginTop={1}
+                     paddingRight={1}
+                     marginBottom={0}
+                     marginTop={0}
                   >
-                     {prompt.creator._id === session?.user?.id ? (
+                     {prompt.creator?._id === session?.user?.id ? (
                         <Link
                            href={`/profile`}
                            className=" text-decoration-none "
                         >
-                           <Avatar {...stringAvatar(prompt.creator.username)} />
+                           <Avatar
+                              {...stringAvatar(prompt.creator?.username)}
+                           />
                         </Link>
                      ) : (
                         <Link
-                           href={`/profile/${prompt.creator._id}`}
+                           href={`/profile/${prompt.creator?._id}`}
                            className=" text-decoration-none "
                         >
-                           <Avatar {...stringAvatar(prompt.creator.username)} />
+                           <Avatar
+                              {...stringAvatar(prompt.creator?.username)}
+                           />
                         </Link>
                      )}
                   </Grid>
                   <Grid item xs={6} sm={6} md={6} marginBottom={2}>
-                     <h5 className=" text-black mb-0">
-                        {prompt.creator.username}
-                     </h5>
-                     <h6 className=" text-black-50">{prompt.creator.email}</h6>
+                     <h6 className=" text-black mb-0">
+                        {prompt.creator?.username}
+                     </h6>
+                     <h6 className=" text-black-50">{prompt.creator?.email}</h6>
                   </Grid>
                </div>
                <Grid
@@ -117,7 +120,7 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
                   )}
                </Grid>
             </div>
-            <h4 className=" text-secondary-emphasis rubik">{prompt.title}</h4>
+            <h5 className=" text-secondary-emphasis rubik">{prompt.title}</h5>
             <p className=" text-secondary rubik">{prompt.prompt}</p>
             <div className="tags mt-3">
                {prompt.tags.map((tag) => (
@@ -128,11 +131,10 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
                      icon={<TagRoundedIcon />}
                      label={tag}
                      cursor="pointer"
-                     className="me-2 mb-2"
                   />
                ))}
             </div>
-            {session?.user?.id === prompt.creator._id &&
+            {session?.user?.id === prompt.creator?._id &&
                (path === "/profile" ||
                   path === `/profile/${session?.user?.id} `) && (
                   <div className="d-flex justify-content-center gap-3 pt-2 mt-4">

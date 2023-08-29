@@ -1,37 +1,31 @@
 "use client";
 import React from "react";
 import Cardprompt from "./Cardprompt";
-import { useRouter, usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 import LoadingCards from "./loadingcrds";
 
 const PromptsList = ({ data, handleTagClick }) => {
    if (data.length === 0) {
       return <LoadingCards />;
-   }
-
-   return (
-      <div className="container">
-         <div className="prompts-list m-0 row align-items-start p-md-4  ">
-            {data.map((prompt) => (
-               <Cardprompt
-                  key={prompt._id}
-                  prompt={prompt}
-                  handleTagClick={handleTagClick}
-               />
-            ))}
+   } else {
+      return (
+         <div className="container">
+            <div className="prompts-list m-0 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 align-items-start p-md-2 p-lg-4  ">
+               {data.map((prompt) => (
+                  <Cardprompt
+                     key={prompt._id}
+                     prompt={prompt}
+                     handleTagClick={handleTagClick}
+                  />
+               ))}
+            </div>
          </div>
-      </div>
-   );
+      );
+   }
 };
 
 const Feed = () => {
    const [posts, setPosts] = React.useState([]);
    const [search, setsearch] = React.useState("");
-
-   // const handlechange = (e) => {
-   //    setsearch(e.target.value);
-   // };
 
    React.useEffect(() => {
       const fetchdata = async () => {

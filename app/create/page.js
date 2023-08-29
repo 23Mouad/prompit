@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Navbar from "@components/Navbar";
 import Provider from "@components/Provider";
-import Head from "next/head";
+import toast, { Toaster } from "react-hot-toast";
 
 const CreatePr = () => {
    const [prompt, setPrompt] = useState({
@@ -15,8 +15,14 @@ const CreatePr = () => {
    });
 
    const { data: session } = useSession();
-
    const router = useRouter();
+
+   if (!session) {
+      toast.error("Please sign in to create a prompt");
+      setTimeout(() => {
+         router.push("/signup");
+      }, 2300);
+   }
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -35,9 +41,7 @@ const CreatePr = () => {
          if (res.ok) {
             const prompt = await res.json();
             router.push("/");
-            console.log(prompt);
          }
-         console.log(res);
       } catch (error) {
          console.log(error);
       }
@@ -66,11 +70,8 @@ const CreatePr = () => {
 
    return (
       <Provider>
-         {" "}
-         <Head>
-            <title>Create</title>
-         </Head>
          <Navbar />
+         <Toaster />
          <div
             className="p-2 p-md-5 create-pr"
             style={{ backgroundColor: "#E5E5E5" }}
@@ -114,6 +115,7 @@ const CreatePr = () => {
                                  })
                               }
                               required
+                              spellCheck={true}
                            />
                         </div>
                         <div className="mb-3">
@@ -127,6 +129,8 @@ const CreatePr = () => {
                                  id="tags"
                                  value={prompt.tagInput}
                                  onChange={handleTagInput}
+                                 maxLength={15}
+                                 minLength={2}
                               />
                               <button
                                  type="button"
