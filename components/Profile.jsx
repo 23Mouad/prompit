@@ -8,8 +8,8 @@ const Profile = ({ desc, data, deletePrompt, editPrompt, name }) => {
       <div className="container">
          <h1 className=" text-primary-emphasis">{name} Profile</h1>
          <p>{desc}</p>
-         <div className="container my-4">
-            <div className="prompts-list m-0 row align-items-start p-md-4  ">
+         <div className=" p-3 p-sm-0 my-4">
+            <div className="prompts-list m-0 row row-cols-sm-2 row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 align-items-start p-md-2 p-lg-4  ">
                {data.length === 0 ? (
                   <LoadingCards />
                ) : (

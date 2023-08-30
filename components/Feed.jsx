@@ -8,8 +8,8 @@ const PromptsList = ({ data, handleTagClick }) => {
       return <LoadingCards />;
    } else {
       return (
-         <div className="container">
-            <div className="prompts-list m-0 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 align-items-start p-md-2 p-lg-4  ">
+         <div className="p-3 p-sm-0">
+            <div className="prompts-list m-0 row row-cols-sm-2 row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 align-items-start p-md-2 p-lg-4  ">
                {data.map((prompt) => (
                   <Cardprompt
                      key={prompt._id}

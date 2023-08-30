@@ -21,8 +21,8 @@ const OtherProfile = () => {
       <>
          <Navbar />
          <Profile
-            name={isdata[0].creator?.username || "User"}
-            desc={`Welcome to ${isdata[0].creator?.username} profile`}
+            name={isdata[0]?.creator?.username || "User"}
+            desc={`Welcome to ${isdata[0]?.creator?.username} profile`}
             data={isdata}
          />
       </>

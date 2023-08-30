@@ -1,4 +1,4 @@
-import { Grid, Skeleton, Stack } from "@mui/material";
+import { Grid, Skeleton } from "@mui/material";
 
 const LoadingCards = () => {
    return (
@@ -31,33 +31,26 @@ const LoadingCards = () => {
                item
                xs={12}
                sm={6}
-               md={4}
+               lg={4}
                sx={{ marginTop: { xs: 2, sm: 2, md: 0 } }}
             >
                <Skeleton variant="circular" height={80} width={80} />
                <Skeleton variant="rectangular" height={150} />
                <Skeleton variant="rounded" height={150} />
             </Grid>
-         </Grid>
-         <Grid
-            container
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
-            padding={4}
-         >
             <Grid
                item
                xs={12}
                sm={6}
-               md={4}
+               md={6}
+               lg={4}
                sx={{ marginBottom: { xs: 2, sm: 2, md: 0 } }}
             >
                <Skeleton variant="circular" width={80} height={80} />
                <Skeleton variant="rectangular" height={150} />
                <Skeleton variant="rounded" height={150} />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
                <Skeleton variant="circular" width={80} height={80} />
                <Skeleton variant="rectangular" height={150} />
                <Skeleton variant="rounded" height={150} />
@@ -66,33 +59,26 @@ const LoadingCards = () => {
                item
                xs={12}
                sm={6}
-               md={4}
+               lg={4}
                sx={{ marginTop: { xs: 2, sm: 2, md: 0 } }}
             >
                <Skeleton variant="circular" height={80} width={80} />
                <Skeleton variant="rectangular" height={150} />
                <Skeleton variant="rounded" height={150} />
             </Grid>
-         </Grid>
-         <Grid
-            container
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
-            padding={4}
-         >
             <Grid
                item
                xs={12}
                sm={6}
-               md={4}
+               md={6}
+               lg={4}
                sx={{ marginBottom: { xs: 2, sm: 2, md: 0 } }}
             >
                <Skeleton variant="circular" width={80} height={80} />
                <Skeleton variant="rectangular" height={150} />
                <Skeleton variant="rounded" height={150} />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
                <Skeleton variant="circular" width={80} height={80} />
                <Skeleton variant="rectangular" height={150} />
                <Skeleton variant="rounded" height={150} />
@@ -101,7 +87,35 @@ const LoadingCards = () => {
                item
                xs={12}
                sm={6}
-               md={4}
+               lg={4}
+               sx={{ marginTop: { xs: 2, sm: 2, md: 0 } }}
+            >
+               <Skeleton variant="circular" height={80} width={80} />
+               <Skeleton variant="rectangular" height={150} />
+               <Skeleton variant="rounded" height={150} />
+            </Grid>
+            <Grid
+               item
+               xs={12}
+               sm={6}
+               md={6}
+               lg={4}
+               sx={{ marginBottom: { xs: 2, sm: 2, md: 0 } }}
+            >
+               <Skeleton variant="circular" width={80} height={80} />
+               <Skeleton variant="rectangular" height={150} />
+               <Skeleton variant="rounded" height={150} />
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+               <Skeleton variant="circular" width={80} height={80} />
+               <Skeleton variant="rectangular" height={150} />
+               <Skeleton variant="rounded" height={150} />
+            </Grid>
+            <Grid
+               item
+               xs={12}
+               sm={6}
+               lg={4}
                sx={{ marginTop: { xs: 2, sm: 2, md: 0 } }}
             >
                <Skeleton variant="circular" height={80} width={80} />

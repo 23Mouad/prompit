@@ -58,7 +58,7 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
    const path = usePathname();
 
    return (
-      <div className="col row bg-body-tertiary p-xs-1 p-sm-2 mb-2 border border-2 border-opacity-25 border-secondary mx-0 ">
+      <div className="col row bg-body-tertiary p-2 mb-2 border border-2 border-opacity-25 border-secondary mx-0 ">
          <div className="avoid-break">
             <div className=" justify-content-between d-flex p-1 ">
                <div className=" d-flex">
@@ -120,7 +120,7 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
                   )}
                </Grid>
             </div>
-            <h5 className=" text-secondary-emphasis rubik">{prompt.title}</h5>
+            <h5 className=" text-secondary-emphasis rubik ">{prompt.title}</h5>
             <p className=" text-secondary rubik">{prompt.prompt}</p>
             <div className="tags mt-3">
                {prompt.tags.map((tag) => (
@@ -131,6 +131,7 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
                      icon={<TagRoundedIcon />}
                      label={tag}
                      cursor="pointer"
+                     sx={{ marginRight: "5px" }}
                   />
                ))}
             </div>
@@ -139,14 +140,14 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
                   path === `/profile/${session?.user?.id} `) && (
                   <div className="d-flex justify-content-center gap-3 pt-2 mt-4">
                      <p
-                        className=" text-success pointer-event"
+                        className=" text-success bg-success bg-opacity-50"
                         onClick={editPrompt}
                         style={{ cursor: "pointer" }}
                      >
                         Edit
                      </p>
                      <p
-                        className=" text-danger pointer-event "
+                        className=" text-danger bg-danger bg-opacity-50 "
                         onClick={deletePrompt}
                         style={{ cursor: "pointer" }}
                      >

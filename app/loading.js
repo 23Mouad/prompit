@@ -1,6 +1,6 @@
 export default function Loading() {
    return (
-      <div className="gearbox">
+      <div className="gearbox ">
          <div className="overlay"></div>
          <div className="gear one">
             <div className="gear-inner">
