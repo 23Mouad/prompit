@@ -106,7 +106,7 @@
 
 .search__input:focus {
    outline: none;
-   background-color: #f0eeee;
+   background-color: #fcfcfc;
 }
 
 .search__input::-webkit-input-placeholder {
@@ -115,7 +115,7 @@
 }
 
 .search__input:focus + .search__button {
-   background-color: #f0eeee;
+   background-color: #fcfcfc;
 }
 
 .search__button {
