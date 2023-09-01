@@ -13,7 +13,7 @@ const Navbar = () => {
    const { data: session } = useSession();
 
    return (
-      <nav className="navbari d-flex justify-content-between align-items-center p-1 ">
+      <nav className="navbari d-flex justify-content-between align-items-center p-0 ">
          <div className="logo-site d-flex align-items-center">
             <Link href="/">
                <Image

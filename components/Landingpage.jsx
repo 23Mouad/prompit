@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const LandingPage = () => {
    return (
-      <div className=" landing-page">
+      <div className=" landing-page mb-2">
          <div className="row m-0">
             <div className="col-md-6 order-2 order-md-1 secondpart m-0 p-5">
                <h2 className=" mt-5">
@@ -35,13 +35,13 @@ const LandingPage = () => {
                </div>
             </div>
             <div className="col-md-6 order-1 order-md-2 p-0 overflow-y-hidden">
-               <Image
+               {/* <Image
                   src={LandingDesign}
                   alt="landing"
                   className=" img-fluid"
                   height={600}
                   priority={true}
-               />
+               /> */}
             </div>
          </div>
       </div>
