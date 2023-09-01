@@ -5,12 +5,28 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import Image from "next/image";
 import logopng from "../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Fade from "@mui/material/Fade";
 
 const Navbar = () => {
    const { data: session } = useSession();
+   const [isSmall, setIsSmall] = React.useState(false);
+
+   React.useEffect(() => {
+      window.innerWidth < 768 ? setIsSmall(true) : setIsSmall(false);
+   }, []);
+
+   const [anchorEl, setAnchorEl] = React.useState(null);
+   const open = Boolean(anchorEl);
+   const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+   };
+   const handleClose = () => {
+      setAnchorEl(null);
+   };
 
    return (
       <nav className="navbari d-flex justify-content-between align-items-center p-0 ">
@@ -32,7 +48,7 @@ const Navbar = () => {
          <div>
             {session?.user ? (
                <>
-                  {window.innerWidth > 768 ? (
+                  {isSmall === false ? (
                      <>
                         <Link
                            href="/profile"
@@ -59,49 +75,49 @@ const Navbar = () => {
                         <button
                            className="btn btn-outline-danger rounded-5 me-2 p-2 pe-3 ps-3 "
                            onClick={() => signOut()}
-                           title="Sign out"
+                           title="Log out"
                         >
-                           Sign Out
+                           Logout
                         </button>
                      </>
                   ) : (
                      <>
-                        <Link
-                           href="/profile"
-                           style={{ marginRight: "10px" }}
-                           title="profile"
-                        >
-                           <Image
-                              src={session.user.image}
-                              alt="profile picture"
-                              className="rounded-circle"
-                              width={40}
-                              height={40}
-                              priority
-                           />
-                        </Link>
-                        <Link
-                           href="/create"
-                           style={{ marginRight: "10px" }}
-                           title="create a prompt"
+                        <Button
+                           id="fade-button"
+                           aria-controls={open ? "fade-menu" : undefined}
+                           aria-haspopup="true"
+                           aria-expanded={open ? "true" : undefined}
+                           onClick={handleClick}
                         >
                            <FontAwesomeIcon
-                              icon={faPlus}
-                              size="2xl"
-                              style={{ color: "#1f1f1f" }}
+                              icon={faBars}
+                              style={{ color: "#171717" }}
+                              size="xl"
                            />
-                        </Link>
-                        <button
-                           onClick={() => signOut()}
-                           title="sign out"
-                           className=" border-0 bg-transparent"
+                        </Button>
+                        <Menu
+                           id="fade-menu"
+                           MenuListProps={{
+                              "aria-labelledby": "fade-button",
+                           }}
+                           anchorEl={anchorEl}
+                           open={open}
+                           onClose={handleClose}
+                           TransitionComponent={Fade}
                         >
-                           <FontAwesomeIcon
-                              icon={faRightFromBracket}
-                              size="2xl"
-                              style={{ color: "#DC3545" }}
-                           />
-                        </button>
+                           <MenuItem>
+                              {" "}
+                              <Link href="/profile" title="Profile">
+                                 Profile
+                              </Link>
+                           </MenuItem>
+                           <MenuItem>
+                              <Link href="/create" title="Create a prompt">
+                                 Create prompt
+                              </Link>
+                           </MenuItem>
+                           <MenuItem onClick={() => signOut()}>Logout</MenuItem>
+                        </Menu>
                      </>
                   )}
                </>

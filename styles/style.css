@@ -12,6 +12,11 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap");
 /*font-family: 'Rubik', sans-serif;*/
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&display=swap");
+/*
+font-family: 'Bebas Neue', sans-serif;
+font-family: 'Lobster', cursive;
+*/
 
 .main {
    background-color: #e5e5e5;
@@ -49,11 +54,9 @@
    background-position: center;
 }
 .landing-page h2 {
-   font-family: "neue";
-}
-
-.landing-page h2 span {
-   font-family: "neueoutline";
+   font-family: "Bebas Neue", sans-serif;
+   font-weight: 600;
+   color: #111;
 }
 
 /* Sign in page */
@@ -316,4 +319,82 @@
 
 .gear-inner .bar:nth-child(6) {
    transform: rotate(150deg);
+}
+
+/* animated text */
+
+svg {
+   font-family: "Russo One", sans-serif;
+   width: 100%;
+   height: 100%;
+}
+svg text {
+   animation: stroke 5s infinite alternate;
+   stroke-width: 0.5;
+   stroke: #ffffff;
+   font-size: 3rem;
+}
+@keyframes stroke {
+   0% {
+      fill: rgba(72, 138, 204, 0);
+      stroke: rgba(54, 95, 160, 1);
+      stroke-dashoffset: 25%;
+      stroke-dasharray: 0 50%;
+      stroke-width: 2;
+   }
+   70% {
+      fill: rgba(72, 138, 204, 0);
+      stroke: rgba(54, 95, 160, 1);
+   }
+   80% {
+      fill: rgba(72, 138, 204, 0);
+      stroke: rgba(54, 95, 160, 1);
+      stroke-width: 3;
+   }
+   100% {
+      fill: rgba(72, 138, 204, 1);
+      stroke: rgba(54, 95, 160, 0);
+      stroke-dashoffset: -25%;
+      stroke-dasharray: 50% 0;
+      stroke-width: 0;
+   }
+}
+
+/* Spinner */
+.spinner-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh; /* This makes the container take up the full viewport height */
+}
+
+.spinner {
+   background-image: linear-gradient(rgb(47, 226, 87) 35%, rgb(0, 225, 255));
+   width: 100px;
+   height: 100px;
+   animation: spinning82341 1.7s linear infinite;
+   text-align: center;
+   border-radius: 50px;
+   filter: blur(1px);
+   box-shadow: 0px -5px 20px 0px rgb(47, 226, 87),
+      0px 5px 20px 0px rgb(0, 225, 255);
+   position: relative;
+}
+
+.spinner1 {
+   background-color: rgb(255, 255, 255);
+   width: 100px;
+   height: 100px;
+   border-radius: 50px;
+   filter: blur(10px);
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   translate: (-50%, -50%);
+}
+
+@keyframes spinning82341 {
+   to {
+      transform: rotate(360deg);
+   }
 }
