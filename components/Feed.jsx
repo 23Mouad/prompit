@@ -55,10 +55,10 @@ const Feed = () => {
 
    return (
       <div className=" p-1 p-sm-2 p-md-4 p-lg-5">
-         <div className="search  me-auto ms-auto w-25 ">
+         <div className="search  me-auto ms-auto w-50 ">
             <input
                type="text"
-               className="search__input"
+               className="search__input w-100"
                placeholder="Type your text"
                value={search}
                onChange={(e) => setsearch(e.target.value)}
