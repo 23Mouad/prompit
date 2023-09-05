@@ -41,6 +41,10 @@ const handler = NextAuth({
             return false;
          }
       },
+      async redirect({ url, baseUrl }) {
+         // specify the URL to redirect to after a successful sign-in
+         return url.startsWith(baseUrl) ? url : "/";
+      },
    },
 });
 
