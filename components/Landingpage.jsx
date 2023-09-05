@@ -34,15 +34,7 @@ const LandingPage = () => {
                   </Link>
                </div>
             </div>
-            <div className="col-md-6 order-1 order-md-2 p-0 overflow-y-hidden">
-               {/* <Image
-                  src={LandingDesign}
-                  alt="landing"
-                  className=" img-fluid"
-                  height={600}
-                  priority={true}
-               /> */}
-            </div>
+            <div className="col-md-6 order-1 order-md-2 p-0 overflow-y-hidden"></div>
          </div>
       </div>
    );

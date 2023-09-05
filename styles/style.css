@@ -398,3 +398,20 @@ svg text {
       transform: rotate(360deg);
    }
 }
+
+.btns-edit-del p:nth-child(1):hover {
+   background-color: rgba(0, 217, 48, 0.4);
+   padding: 2.5px 5px;
+   color: white;
+}
+
+.btns-edit-del p:nth-child(2):hover {
+   background-color: rgba(
+      255,
+      0,
+      0,
+      0.4
+   ); /* Red color with alpha transparency */
+   padding: 2.5px 5px;
+   color: white;
+}

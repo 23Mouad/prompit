@@ -138,16 +138,16 @@ const Cardprompt = ({ handleTagClick, prompt, editPrompt, deletePrompt }) => {
             {session?.user?.id === prompt.creator?._id &&
                (path === "/profile" ||
                   path === `/profile/${session?.user?.id} `) && (
-                  <div className="d-flex justify-content-center gap-3 pt-2 mt-4">
+                  <div className="d-flex justify-content-center gap-3 pt-2 mt-4 btns-edit-del">
                      <p
-                        className=" text-success bg-success bg-opacity-50"
+                        className=" text-success "
                         onClick={editPrompt}
                         style={{ cursor: "pointer" }}
                      >
                         Edit
                      </p>
                      <p
-                        className=" text-danger bg-danger bg-opacity-50 "
+                        className=" text-danger "
                         onClick={deletePrompt}
                         style={{ cursor: "pointer" }}
                      >
