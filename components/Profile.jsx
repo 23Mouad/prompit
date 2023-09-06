@@ -33,11 +33,8 @@ const Profile = ({ desc, data, deletePrompt, editPrompt, name }) => {
             {data.length === 0 ? (
                <LoadingCards />
             ) : (
-               data.map((prompt) => (
-                  <div
-                     className="prompts-list m-0 row row-cols-sm-2 row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 align-items-start p-md-2 p-lg-4  "
-                     key={prompt._id}
-                  >
+               <div className="prompts-list m-0 row row-cols-sm-2 row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 align-items-start p-md-2 p-lg-4  ">
+                  {data.map((prompt) => (
                      <Cardprompt
                         key={prompt._id}
                         prompt={prompt}
@@ -46,8 +43,8 @@ const Profile = ({ desc, data, deletePrompt, editPrompt, name }) => {
                         }
                         editPrompt={() => editPrompt && editPrompt(prompt)}
                      />
-                  </div>
-               ))
+                  ))}
+               </div>
             )}
          </div>
       </>
