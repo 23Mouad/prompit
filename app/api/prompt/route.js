@@ -1,14 +1,12 @@
-import { connectDB } from "@utils/database";
-import Prompt from "@models/Prompt";
-import User from "@models/User";
-
-export const GET = async (req) => {
+export const revalidate = 1; //revalidate api every 1 second
+export const GET = async (request) => {
    try {
-      await connectDB();
+      await connectToDB();
+
       const prompts = await Prompt.find({}).populate("creator");
 
       return new Response(JSON.stringify(prompts), { status: 200 });
    } catch (error) {
-      return new Response("there is problem with upload all ", { status: 500 });
+      return new Response("Failed to fetch all prompts", { status: 500 });
    }
 };
