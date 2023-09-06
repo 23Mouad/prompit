@@ -29,7 +29,7 @@ const Feed = () => {
 
    React.useEffect(() => {
       const fetchdata = async () => {
-         const res = await fetch("/api/prompt");
+         const res = await fetch("/api/prompt", { cach: "no-store" });
          const data = await res.json();
          search.length === 0
             ? setPosts(data)
