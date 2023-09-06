@@ -5,7 +5,7 @@ import User from "@models/User";
 export const revalidate = 1; //revalidate api every 1 second
 export const GET = async (request) => {
    try {
-      await connectToDB();
+      await connectDB();
 
       const prompts = await Prompt.find({}).populate("creator");
 
